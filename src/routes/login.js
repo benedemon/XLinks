@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 
 login.route('/').post(async (req, res) => {
   try {
-
     const { username, email } = req.query;
 
     const userDetails = {
@@ -14,13 +13,12 @@ login.route('/').post(async (req, res) => {
       email,
     };
 
-    const [result] = await readPool.query(`SELECT username, email FROM users where email = '${email}'`);
-
+    const [result] = await readPool.query('SELECT id, username, email FROM users where email = ?', [email]);
+    
     if (result.length === 0) {
       // Add username to table
       const [newUser] = await writePool.query('INSERT INTO users SET ? ', userDetails);
     }
-
     // generate token
     const userDetailForToken = {
       username,
