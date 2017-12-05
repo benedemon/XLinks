@@ -1,4 +1,4 @@
-USE linkApp;
+USE `linkApp`;
 
 DROP TABLE `users`;
 DROP TABLE `links`;
