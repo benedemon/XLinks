@@ -1,12 +1,13 @@
-const addLink = require('express').Router();
+const updateLink = require('express').Router();
 import { readPool, writePool } from '../db';
 // const bcrypt = require('bcrypt');
 const sendResponse = require('../helpers/sendResponse');
 //const jwt = require('jsonwebtoken');
 
-addLink.get('/', async (req, res) => {
+updateLink.get('/', async (req, res) => {
     //const { title } = req.query;
     try {
+      console.log("here");
       const [result] = await readPool.query('SELECT * FROM links');
       res.json(result);
     } catch (error) {
@@ -14,19 +15,14 @@ addLink.get('/', async (req, res) => {
     }
   });
 
-addLink.route('/').post(async (req, res) => {
+updateLink.post('/', async (req, res) => {
   try {
     console.log('abbaaa');
     console.log(req.query);
 
     const { userId, link } = req.query;
 
-    const linkDetails = {
-      userId,
-      link,
-    };
-
-    const [newLink] = await writePool.query('INSERT INTO links SET ? ', linkDetails);
+    const [newLink] = await writePool.query(`Update links SET link = '${link}' where userId = ${userId}`);
 
     res.status(200).json(newLink);
   } catch (err) {
@@ -38,4 +34,4 @@ addLink.route('/').post(async (req, res) => {
   }
 });
 
-module.exports = addLink;
+module.exports = updateLink;

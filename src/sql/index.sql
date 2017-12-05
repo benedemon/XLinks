@@ -1,3 +1,5 @@
-USE linkApp;
+use linkApp;
 
-SELECT * from users;
+update links set link="vasdg" where userId =13;
+select * from links;
+

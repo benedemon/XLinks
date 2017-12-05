@@ -1,10 +1,10 @@
-const addLink = require('express').Router();
+const deleteLink = require('express').Router();
 import { readPool, writePool } from '../db';
 // const bcrypt = require('bcrypt');
 const sendResponse = require('../helpers/sendResponse');
 //const jwt = require('jsonwebtoken');
 
-addLink.get('/', async (req, res) => {
+deleteLink.get('/', async (req, res) => {
     //const { title } = req.query;
     try {
       const [result] = await readPool.query('SELECT * FROM links');
@@ -14,7 +14,7 @@ addLink.get('/', async (req, res) => {
     }
   });
 
-addLink.route('/').post(async (req, res) => {
+deleteLink.route('/').post(async (req, res) => {
   try {
     console.log('abbaaa');
     console.log(req.query);
@@ -26,7 +26,7 @@ addLink.route('/').post(async (req, res) => {
       link,
     };
 
-    const [newLink] = await writePool.query('INSERT INTO links SET ? ', linkDetails);
+    const [newLink] = await writePool.query(`Delete from links where link = '${link}' `);
 
     res.status(200).json(newLink);
   } catch (err) {
@@ -38,4 +38,4 @@ addLink.route('/').post(async (req, res) => {
   }
 });
 
-module.exports = addLink;
+module.exports = deleteLink;
