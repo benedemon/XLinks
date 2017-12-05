@@ -8,10 +8,11 @@ const login = require('./login');
  */
 routes.get('/', (req, res) => {
     console.log('bb');
-    res.render('index', { title: 'Link App' });
+    res.send('working');
   });
 
 // middlewares
 routes.use('/login', login);
 
 module.exports = routes;
+

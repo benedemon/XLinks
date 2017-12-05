@@ -1,3 +1,3 @@
-use linkApp;
+USE linkApp;
 
 SELECT * from users;
