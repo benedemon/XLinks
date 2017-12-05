@@ -19,9 +19,14 @@ login.route('/').post(async (req, res) => {
     console.log('abbaaa');
     console.log(req.query);
 
-    const { userName, userEmail } = req.query;
+    const { username, email } = req.query;
 
-    const [newUser] = await writePool.query('INSERT INTO users (userName, userEmail) values (?, ?); ', userName, userEmail);
+    const userDetails = {
+      username,
+      email,
+    };
+
+    const [newUser] = await writePool.query('INSERT INTO users SET ? ', userDetails);
 
     res.status(200).json(newUser);
   } catch (err) {
