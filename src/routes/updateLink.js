@@ -4,9 +4,9 @@ const sendResponse = require('../helpers/sendResponse');
 
 updateLink.post('/', async (req, res) => {
   try {
-    const { userId, link } = req.query;
+    const { id, link } = req.query;
 
-    const [newLink] = await writePool.query(`Update links SET link = '${link}' where userId = ${userId}`);
+    const [newLink] = await writePool.query(`Update links SET link = '${link}' where userId = ${id}`);
 
     res.status(200).json(newLink);
   } catch (err) {

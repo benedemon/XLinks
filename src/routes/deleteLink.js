@@ -4,15 +4,15 @@ import { readPool, writePool } from '../db';
 const sendResponse = require('../helpers/sendResponse');
 //const jwt = require('jsonwebtoken');
 
-deleteLink.get('/', async (req, res) => {
-    //const { title } = req.query;
-    try {
-      const [result] = await readPool.query('SELECT * FROM links');
-      res.json(result);
-    } catch (error) {
-      console.error(error)
-    }
-  });
+// deleteLink.get('/', async (req, res) => {
+//     //const { title } = req.query;
+//     try {
+//       const [result] = await readPool.query('SELECT * FROM users');
+//       res.json(result);
+//     } catch (error) {
+//       console.error(error)
+//     }
+//   });
 
 deleteLink.route('/').post(async (req, res) => {
   try {
