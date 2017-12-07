@@ -4,10 +4,11 @@ const sendResponse = require('../helpers/sendResponse');
 
 addLink.route('/').post(async (req, res) => {
   try {
-    const { userId, link } = req.query;
+    const { link } = req.query;
+    const user = req.user;
 
     const linkDetails = {
-      userId,
+      userId: user.userId,
       link,
     };
 

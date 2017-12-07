@@ -7,18 +7,16 @@ const updateLink = require('./updateLink');
 const deleteLink = require('./deleteLink');
 const getLinks = require('./getLinks');
 
-/**
- * GET home page
- */
 routes.get('/', (req, res) => {
     res.send('working');
   });
 
 // middlewares
-routes.use('/login',checkAuth, login);
-routes.use('/addLink',addLink);
-routes.use('/updateLink',updateLink);
-routes.use('/deleteLink',deleteLink);
-routes.use('/getLinks',getLinks);
+routes.use('/login', login);
+routes.use('/addLink', checkAuth, addLink);
+routes.use('/updateLink', checkAuth, updateLink);
+routes.use('/deleteLink', checkAuth, deleteLink);
+routes.use('/getLinks', checkAuth, getLinks);
+
 module.exports = routes;
 
