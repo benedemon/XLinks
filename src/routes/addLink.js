@@ -1,6 +1,5 @@
 const addLink = require('express').Router();
 import { writePool } from '../db';
-const sendResponse = require('../helpers/sendResponse');
 
 addLink.route('/').post(async (req, res) => {
   try {
@@ -17,7 +16,7 @@ addLink.route('/').post(async (req, res) => {
     res.status(200).json(newLink);
   } catch (err) {
     console.error(err);
-    return sendResponse(res, 500, [], 'failed', 'something went wrong');
+    res.status(500).send('Something went wrong.');
   }
 });
 

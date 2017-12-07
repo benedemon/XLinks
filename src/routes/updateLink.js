@@ -1,8 +1,7 @@
 const updateLink = require('express').Router();
 import { writePool } from '../db';
-const sendResponse = require('../helpers/sendResponse');
 
-updateLink.post('/', async (req, res) => {
+updateLink.patch('/', async (req, res) => {
   try {
     const { id, link } = req.query;
 
