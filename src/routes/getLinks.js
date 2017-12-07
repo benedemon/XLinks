@@ -4,7 +4,6 @@ import { readPool } from '../db';
 
 getLinks.get('/', async (req, res) => {
     try {
-      console.log(req.user);
       const queryId = req.user.userId;
       const [result] = await readPool.query('SELECT * FROM links WHERE userId = ?', [queryId]);
       res.json(result);

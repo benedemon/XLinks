@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+const expressValidator = require('express-validator');
 import routes from './routes';
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(logger('dev', {
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 
 // Routes
 app.use('/', routes);

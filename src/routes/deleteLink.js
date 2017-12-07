@@ -1,8 +1,7 @@
 const deleteLink = require('express').Router();
 import { writePool } from '../db';
 
-
-deleteLink.route('/').delete(async (req, res) => {
+deleteLink.route('/').post(async (req, res) => {
   try {
     const id = req.query.id;
 

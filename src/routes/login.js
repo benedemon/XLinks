@@ -4,6 +4,16 @@ const jwt = require('jsonwebtoken');
 
 login.route('/').post(async (req, res) => {
   try {
+    // validate by using express-validator
+    req.check('username', 'username is required').exists();
+    req.check('email', 'invalid email').exists().isEmail();
+
+    const errors = req.validationErrors();
+    if (errors) {
+      res.status(400).send(errors[0].msg);
+      return;
+    }
+
     const { username, email } = req.query;
 
     const userDetails = {

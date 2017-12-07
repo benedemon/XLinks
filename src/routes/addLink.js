@@ -3,6 +3,15 @@ import { writePool } from '../db';
 
 addLink.route('/').post(async (req, res) => {
   try {
+    // validate by using express-validator
+    req.check('link', 'invalid link').exists().isURL();
+    
+    const errors = req.validationErrors();
+    if (errors) {
+      res.status(400).send(errors[0].msg);
+      return;
+    }
+
     const { link } = req.query;
     const user = req.user;
 

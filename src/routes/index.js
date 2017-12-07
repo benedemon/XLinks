@@ -13,9 +13,10 @@ routes.get('/', (req, res) => {
 
 // middlewares
 routes.use('/login', login);
-routes.use('/addLink',checkAuth,addLink);
-routes.use('/updateLink',checkAuth,updateLink);
-routes.use('/deleteLink',checkAuth,deleteLink);
-routes.use('/getLinks',checkAuth,getLinks);
+routes.use('/addLink', checkAuth, addLink);
+routes.use('/updateLink', checkAuth, updateLink);
+routes.use('/deleteLink', checkAuth, deleteLink);
+routes.use('/getLinks', checkAuth, getLinks);
+
 module.exports = routes;
 
