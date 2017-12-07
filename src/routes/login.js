@@ -1,7 +1,5 @@
 const login = require('express').Router();
 import { readPool, writePool } from '../db';
-// const bcrypt = require('bcrypt');
-const sendResponse = require('../helpers/sendResponse');
 const jwt = require('jsonwebtoken');
 
 login.route('/').post(async (req, res) => {
@@ -41,7 +39,7 @@ login.route('/').post(async (req, res) => {
     res.status(200).json({message:"Successfully logged in!", token: token,});
   } catch (err) {
     console.error(err);
-    return sendResponse(res, 500, [], 'failed', 'something went wrong');
+    res.status(500).send('Something went wrong');
   }
 });
 

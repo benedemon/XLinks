@@ -1,6 +1,5 @@
 const updateLink = require('express').Router();
 import { writePool } from '../db';
-const sendResponse = require('../helpers/sendResponse');
 
 updateLink.post('/', async (req, res) => {
   try {
