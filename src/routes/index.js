@@ -7,9 +7,6 @@ const updateLink = require('./updateLink');
 const deleteLink = require('./deleteLink');
 const getLinks = require('./getLinks');
 
-/**
- * GET home page
- */
 routes.get('/', (req, res) => {
     res.send('working');
   });

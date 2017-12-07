@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 
 const checkAuth = async (req, res, next) => {
   const token = req.header('x-auth');
-  console.log("helloooooo");
   // validate if token is empty of undefined
   if (!token || typeof token === undefined) {
     res.status(401).json({message: 'Invalid Token'});
@@ -14,7 +13,6 @@ const checkAuth = async (req, res, next) => {
     const decode = await jwt.verify(token, process.env.JWT_SECRET);
     
     req.user = decode;
-
     next();
 
   } catch (err) {

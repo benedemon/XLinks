@@ -13,20 +13,24 @@ login.route('/').post(async (req, res) => {
       email,
     };
 
-    const [result] = await readPool.query('SELECT userId, username, email FROM users where email = ?', [email]);
-    
-    if (result.length === 0) {
+    let [user] = await readPool.query('SELECT userId, username, email FROM users where email = ?', [email]);
+
+    if (user.length === 0) {
       // Add username to table
-      const [newUser] = await writePool.query('INSERT INTO users SET ? ', userDetails);
+      await writePool.query('INSERT INTO users SET ? ', userDetails);
+      [user] = await readPool.query('SELECT userId, username, email FROM users where email = ?', [email]);
     }
+
     // generate token
-    const userDetailForToken = {
+    const userDetailsForToken = {
+      userId: user[0].userId,
       username,
       email,
     };
     
+    console.log('USER DETAILS', userDetailsForToken);
     const token = jwt.sign(
-        userDetailForToken,
+        userDetailsForToken,
         process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRY },
     );
 

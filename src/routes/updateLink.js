@@ -6,7 +6,7 @@ updateLink.post('/', async (req, res) => {
   try {
     const { id, link } = req.query;
 
-    const [newLink] = await writePool.query(`Update links SET link = '${link}' where userId = ${id}`);
+    const [newLink] = await writePool.query(`Update links SET link = '${link}' where id = ${id}`);
 
     res.status(200).json(newLink);
   } catch (err) {
