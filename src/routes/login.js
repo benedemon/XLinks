@@ -13,7 +13,7 @@ login.route('/').post(async (req, res) => {
       email,
     };
 
-    const [result] = await readPool.query('SELECT id, username, email FROM users where email = ?', [email]);
+    const [result] = await readPool.query('SELECT userId, username, email FROM users where email = ?', [email]);
     
     if (result.length === 0) {
       // Add username to table

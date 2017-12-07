@@ -1,7 +1,7 @@
-const showLinks = require('express').Router();
-import { readPool, writePool } from '../db';
+const getLinks = require('express').Router();
+import { readPool } from '../db';
 
-showLinks.get('/', async (req, res) => {
+getLinks.get('/', async (req, res) => {
     try {
 
       const [result] = await readPool.query('SELECT * FROM links');
